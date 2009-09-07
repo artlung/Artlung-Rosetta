@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PrototypeRosetta</title>
+<script src="resources/prototype.1.6.1.js" type="text/javascript" charset="utf-8"></script>
+<script src="rosetta.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="styles.css" type="text/css"charset="utf-8">
+<script type="text/javascript">
+Event.observe(window, 'load', function(){
+	
+	var sampleText = 'Doing it with Prototype!';
+	$$("ul li:nth-child(4n-3)").each(function(item){
+		item.addClassName("start");
+	});
+	$$("ul li:nth-child(4n)").each(function(item){
+		item.addClassName("end");
+	});
+	$$('h1').each(function(item){
+		item.addClassName('active');
+	});
+	$$('p').each(function(item){
+		item.addClassName('bad');
+	});
+	$('testIdentifier').setStyle({
+		border:'1px solid #000',
+		backgroundColor:'#ccc'
+	}).update(sampleText);
+	
+	$$('#interactionExperiments input').each(function(item){
+		item.observe('click', function(evt){
+			item.hide();
+			Event.stop(evt);
+		});
+	});
+	$$('#interactionExperiments a').each(function(item){
+		item.observe('click', function(evt){
+			item.siblings('input').each(function(sub){
+				sub.show();
+			});
+			Event.stop(evt);
+		});
+	});
+	$$('#nav a').each(function(item){
+		item.observe('mouseover', function(evt){
+			if (item.down('img')) {
+				var src = item.down('img').readAttribute('src').replace('-off','-over');
+				item.down().writeAttribute('src', src);
+			}
+		});
+		item.observe('mouseout', function(evt){
+			if (item.down('img')) {
+				var src = item.down('img').readAttribute('src').replace('-over','-off');
+				item.down().writeAttribute('src', src);
+			}
+		});
+	});
+	$('addRandomString').observe('click', function(evt){
+		if (Rosetta.mayIncrement()) {
+			Element.insert(Event.element(evt), {after:' World' + Rosetta.getIndex() });
+			Rosetta.increment();
+		}
+		Event.stop(evt);
+	});
+	$$('#loginArea h2').each(function(item){
+		item.observe('click', function(evt){
+			$('loginForm').toggle();
+			var spanStr = (item.down('span').innerHTML === '+') ? '-' : '+';
+			item.down('span').update(spanStr);
+		});
+	});
+	
+});
+</script>
+</head>
+<body>
+
+<div id="testIdentifier">
+	hello.
+</div>
+
+<div id="loginArea">
+	<h2>(<span>+</span>) Show Login</h2>
+	<div id="loginForm" style="display: none">
+	<form method="post" action=".">
+		Username: <input type="text" name="username" /><br />
+		Password: <input type="password" name="password" /><br />
+		<input type="submit" value="Login">
+	</form>
+	</div><!-- #loginForm-->
+</div><!-- #loginArea -->
+
+<div id="interactionExperiments">
+	Click the buttons in here to make them go away.
+	<a href="#" class="reset">Reset Buttons</a>
+	<br />
+	<input value="click" type="button" />
+	<input value="to" type="button" />
+	<input value="remove" type="button" />
+</div>
+
+<div id="randomContent">
+	<a href="#" id="addRandomString">To whom do you say hello when programming?</a>
+</div>
+
+<div id="nav">
+<table cellspacing="0" cellpadding="0" border="0">
+	<tr><td><a href="index.html"><img src="resources/home-off.gif" alt="Home" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/newcomer-off.gif" alt="Newcomer?" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/biography-off.gif" alt="Biography" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/favorite-sites-off.gif" alt="Favorite Sites" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/resume-off.gif" alt="Resume" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/portfolio-off.gif" alt="Portfolio" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/email-off.gif" alt="Email" border="0" /></a></td></tr>
+</table>
+<a href="#" title="This is another a link inserted into the nav. The mouseover code may not explode because of this.">This link is here to foolproof our mouseover code</a>
+</div>
+
+
+<h1>Test</h1>
+<p>whatever</p>
+<p>else</p>
+
+<ul>
+   <li><a href="/images/">image 1</a></li>
+   <li><a href="/images/">image 2</a></li>
+   <li><a href="/images/">image 3</a></li>
+   <li><a href="/images/">image 4</a></li>
+   <li><a href="/images/">image 5</a></li>
+   <li><a href="/images/">image 6</a></li>
+   <li><a href="/images/">image 7</a></li>
+   <li><a href="/images/">image 8</a></li>
+   <li><a href="/images/">image 9</a></li>
+   <li><a href="/images/">image 10</a></li>
+   <li><a href="/images/">image 11</a></li>
+   <li><a href="/images/">image 12</a></li>
+</ul>
+
+</body>
+</html>

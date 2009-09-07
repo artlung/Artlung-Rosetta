@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DojoRosetta</title>
+<script src="resources/dojo.xd.js" type="text/javascript" charset="utf-8"></script>
+<script src="rosetta.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="styles.css" type="text/css"charset="utf-8">
+<script type="text/javascript">
+dojo.addOnLoad(function() {
+	var sampleText = 'Doing it with Dojo!';
+	dojo.query("ul li:nth-child(4n-3)").addClass("start");
+	dojo.query("ul li:nth-child(4n)").addClass("end");
+	dojo.query('h1').addClass('active');
+	dojo.query('p').addClass('bad');
+
+	testIdentifier = dojo.byId('testIdentifier');
+	dojo.style(testIdentifier, {
+		border:'1px solid #000',
+		backgroundColor:'#ccc'
+	});
+	testIdentifier.innerHTML = sampleText;
+	dojo.query('#interactionExperiments input').forEach(function(item){
+		dojo.connect(item, 'onclick', function(e){
+			item.style.display = 'none';
+			dojo.stopEvent(e);
+		});
+	});
+	dojo.query('#interactionExperiments a').forEach(function(item){
+		dojo.connect(item, 'onclick', function(e){
+			dojo.query('input', item.parentNode).forEach(function(bar){
+				bar.style.display = 'inline';
+			});
+			dojo.stopEvent(e);
+		});
+	});
+	dojo.query('#nav a:has(img)').forEach(function(item){
+		dojo.connect(item, 'onmouseover', function(e){
+			dojo.query('img',item).forEach("item.src = item.src.replace('-off','-over')");
+		});
+		dojo.connect(item, 'onmouseout', function(e){
+			dojo.query('img',item).forEach("item.src = item.src.replace('-over','-off')");
+		});
+	});
+	var addRandomLink= dojo.byId('addRandomString');
+	dojo.connect(addRandomLink, 'onclick', function(e){
+		if (Rosetta.mayIncrement()) {
+			dojo.query('#addRandomString').addContent(' World' + Rosetta.getIndex(), 'after');
+			Rosetta.increment();
+		}
+		dojo.stopEvent(e);
+	});
+	dojo.query('#loginArea h2').forEach(function(item){
+		dojo.connect(item, 'onclick', function(e){
+			var formDiv = dojo.byId('loginForm');
+			if (formDiv.style.display === 'none') {
+				formDiv.style.display = 'block';
+				dojo.query('span', item)[0].innerHTML = '-';
+			} else {
+				formDiv.style.display = 'none';
+				dojo.query('span', item)[0].innerHTML = '+';
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+
+<div id="testIdentifier">
+	hello.
+</div>
+
+<div id="loginArea">
+	<h2>(<span>+</span>) Show Login</h2>
+	<div id="loginForm" style="display: none">
+	<form method="post" action=".">
+		Username: <input type="text" name="username" /><br />
+		Password: <input type="password" name="password" /><br />
+		<input type="submit" value="Login">
+	</form>
+	</div><!-- #loginForm-->
+</div><!-- #loginArea -->
+
+<div id="interactionExperiments">
+	Click the buttons in here to make them go away.
+
+	<a href="#" class="reset">Reset Buttons</a>
+	<br />
+	<input value="click" type="button" />
+	<input value="to" type="button" />
+	<input value="remove" type="button" />
+</div>
+
+<div id="randomContent">
+	<a href="#" id="addRandomString">To whom do you say hello when programming?</a>
+</div>
+
+<div id="nav">
+<table cellspacing="0" cellpadding="0" border="0">
+	<tr><td><a href="index.html"><img src="resources/home-off.gif" alt="Home" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/newcomer-off.gif" alt="Newcomer?" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/biography-off.gif" alt="Biography" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/favorite-sites-off.gif" alt="Favorite Sites" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/resume-off.gif" alt="Resume" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/portfolio-off.gif" alt="Portfolio" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/email-off.gif" alt="Email" border="0" /></a></td></tr>
+</table>
+<a href="#" title="This is another a link inserted into the nav. The mouseover code may not explode because of this.">This link is here to foolproof our mouseover code</a>
+</div>
+
+<h1>Test</h1>
+<p>whatever</p>
+<p>else</p>
+
+<ul>
+   <li><a href="/images/">image 1</a></li>
+   <li><a href="/images/">image 2</a></li>
+   <li><a href="/images/">image 3</a></li>
+   <li><a href="/images/">image 4</a></li>
+   <li><a href="/images/">image 5</a></li>
+   <li><a href="/images/">image 6</a></li>
+   <li><a href="/images/">image 7</a></li>
+   <li><a href="/images/">image 8</a></li>
+   <li><a href="/images/">image 9</a></li>
+   <li><a href="/images/">image 10</a></li>
+   <li><a href="/images/">image 11</a></li>
+   <li><a href="/images/">image 12</a></li>
+</ul>
+
+</body>
+</html>
