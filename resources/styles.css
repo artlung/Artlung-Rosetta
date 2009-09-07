@@ -1,0 +1,55 @@
+body {
+	font-family: sans-serif;
+}
+.start {
+	background-color: #fcc;
+}
+.end {
+	background-color: #cfc;
+}
+#testIdentifier {
+	margin: 0 0 25px 0;
+}
+
+#nav {
+	font-size: x-small;
+}
+#interactionExperiments {
+	border: 1px solid #ccc;
+	padding: 25px;
+	margin: 0 0 10px 0;
+}
+#randomContent {
+	border: 1px solid #ccc;
+	padding: 25px;
+	margin: 0 0 10px 0;
+}
+.active {
+	color: #0f0;
+	background-color: #000;
+}
+.bad {
+color: #fff;
+background-color: #f00;
+}
+#loginArea {
+color: #000;
+border: 1px solid #ccc;
+float: right;
+width: 200px;
+font-family: 'courier new',courier, fixed-width;
+font-size: small;
+background-color: #ece;
+}
+#loginArea h2 {
+margin: 0;
+padding: 0;
+text-align: center;
+background-color: #333;
+color: #fff;
+font-size: medium;
+cursor: pointer;
+}
+#loginForm {
+padding: 0 20px 0 20px;
+}
