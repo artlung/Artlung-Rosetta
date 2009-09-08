@@ -14,7 +14,7 @@ dojo.addOnLoad(function() {
 	dojo.query("ul li:nth-child(4n)").addClass("end");
 	dojo.query('h1').addClass('active');
 	dojo.query('p').addClass('bad');
-	testIdentifier = dojo.byId('testIdentifier');
+	var testIdentifier = dojo.byId('testIdentifier');
 	dojo.style(testIdentifier, {
 		border:'1px solid #000',
 		backgroundColor:'#ccc'
