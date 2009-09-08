@@ -51,6 +51,14 @@ Ext.onReady(function() {
 		h2Element.child('span').update(spanStr);
 		Ext.get('loginForm').toggle();
 	});
+	// var f = Ext.select('script:last');
+	// var s = f.elements[0].innerHTML;
+	// var out = '';
+	// for (i in s) {
+	// 	out += i + ': ' + s + '\n';
+	// }
+	
+	Ext.get('code').dom.innerHTML = Ext.select('script:last').elements[0].innerHTML;
 	
 });
 </script>
@@ -117,6 +125,11 @@ Ext.onReady(function() {
    <li><a href="#">line 11</a></li>
    <li><a href="#">line 12</a></li>
 </ul>
+
+<pre>
+Code for this implementation:
+<code id="code"></code>
+</pre>
 
 </body>
 </html>

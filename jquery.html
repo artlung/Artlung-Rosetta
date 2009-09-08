@@ -48,6 +48,9 @@ jQuery(document).ready(function(){
 		$(this).children('span').text('+');
 		$('#loginForm').hide();
 	});
+	
+	var sourceCode = $('script:last').html();
+	$('#code').html(sourceCode)
 });
 </script>
 </head>
@@ -113,6 +116,11 @@ jQuery(document).ready(function(){
    <li><a href="#">line 11</a></li>
    <li><a href="#">line 12</a></li>
 </ul>
+
+<pre>
+Code for this implementation:
+<code id="code"></code>
+</pre>
 
 </body>
 </html>

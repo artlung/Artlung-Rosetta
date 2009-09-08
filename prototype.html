@@ -70,6 +70,8 @@ Event.observe(window, 'load', function(){
 			item.down('span').update(spanStr);
 		});
 	});
+	var sourceCode = $$('script')[2];
+	$('code').innerHTML = sourceCode.innerHTML;
 	
 });
 </script>
@@ -136,6 +138,11 @@ Event.observe(window, 'load', function(){
    <li><a href="#">line 11</a></li>
    <li><a href="#">line 12</a></li>
 </ul>
+
+<pre>
+Code for this implementation:
+<code id="code"></code>
+</pre>
 
 </body>
 </html>

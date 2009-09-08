@@ -56,6 +56,8 @@ window.addEvent('domready', function() {
 		var spanStr = (this.getFirst('span').get('html') === '+') ? '-' : '+';
 		this.getFirst('span').set('html', spanStr);
 	});
+	var sourceCode = $$('script').getLast().get('html');
+	$('code').set('html', sourceCode)
 	
 });
 </script>
@@ -123,6 +125,11 @@ window.addEvent('domready', function() {
    <li><a href="#">line 11</a></li>
    <li><a href="#">line 12</a></li>
 </ul>
+
+<pre>
+Code for this implementation:
+<code id="code"></code>
+</pre>
 
 </body>
 </html>
