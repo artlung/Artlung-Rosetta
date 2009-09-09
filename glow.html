@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GlowRosetta</title>
+<script src="resources/glow.1.6.0.core.js" type="text/javascript" charset="utf-8"></script>
+<script src="resources/rosetta.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="resources/styles.css" type="text/css"charset="utf-8" />
+<script type="text/javascript">
+glow.ready(function() {
+
+	var sampleText = 'Artlung Rosetta with Glow!';
+	// glow.dom.get("ul li:nth-child(4n-3)").addClass("start");
+	// glow.dom.get("ul li:nth-child(4n)").addClass("end");
+	glow.dom.get('h1').addClass('active');
+	glow.dom.get('p').addClass('bad');
+	glow.dom.get('#testIdentifier').css({
+		border:'1px solid #000',
+		backgroundColor:'#ccc'
+	}).text(sampleText);
+	glow.events.addListener('#interactionExperiments input', 'click', function(e){
+		glow.dom.get(this).hide(); 
+		return false;
+	});
+	glow.events.addListener('#interactionExperiments a', 'click', function(e){
+		glow.dom.get(this).parent().children('input').show();
+		return false;
+	});
+	glow.events.addListener('#nav a', 'mouseover', function(e){
+		if (glow.dom.get(this).children('img').length > 0) {
+			var src = glow.dom.get(this).children('img').attr('src').replace('-off','-over');
+			glow.dom.get(this).children('img').attr('src', src);
+		}
+	})
+	glow.events.addListener('#nav a', 'mouseout', function(e){
+		if (glow.dom.get(this).children('img').length > 0) {
+			var src = glow.dom.get(this).children('img').attr('src').replace('-over','-off');
+			glow.dom.get(this).children('img').attr('src', src);
+		}
+	});
+	glow.events.addListener('#addRandomString', 'click', function(e){
+		if (Rosetta.mayIncrement()) {
+			glow.dom.get(this).after('<span> World' + Rosetta.getIndex() + '</span>');
+			Rosetta.increment();
+		}
+		return false;
+	});
+	glow.events.addListener('#loginArea h2', 'click', function(e){
+		var spanElement = glow.dom.get(this).children('span');
+		if (spanElement.text() === '+') {
+			spanElement.text('-');
+			glow.dom.get('#loginForm').show();
+		} else {
+			spanElement.text('+');
+			glow.dom.get('#loginForm').hide();
+		}
+	});
+	var sourceCode = glow.dom.get('script').item(2).innerHTML; //html();
+	glow.dom.get('#code').html(sourceCode)
+});
+</script>
+</head>
+<body>
+
+<div id="testIdentifier">
+	hello.
+</div>
+
+<div id="loginArea">
+	<h2>(<span>+</span>) Show Login</h2>
+	<div id="loginForm" style="display: none">
+	<form method="post" action=".">
+		Username: <input type="text" name="username" /><br />
+		Password: <input type="password" name="password" /><br />
+		<input type="submit" value="Login" />
+	</form>
+	</div><!-- #loginForm-->
+</div><!-- #loginArea -->
+
+<div id="interactionExperiments">
+	Click the buttons in here to make them go away.
+	<a href="#" class="reset">Reset Buttons</a>
+	<br />
+	<input value="click" type="button" />
+	<input value="to" type="button" />
+	<input value="remove" type="button" />
+</div>
+
+<div id="randomContent">
+	<a href="#" id="addRandomString">To whom do you say hello when programming?</a>
+</div>
+
+<div id="nav">
+<table cellspacing="0" cellpadding="0" border="0">
+	<tr><td><a href="index.html"><img src="resources/images/home-off.gif" alt="Home" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/images/newcomer-off.gif" alt="Newcomer?" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/images/biography-off.gif" alt="Biography" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/images/favorite-sites-off.gif" alt="Favorite Sites" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/images/resume-off.gif" alt="Resume" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/images/portfolio-off.gif" alt="Portfolio" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="resources/images/email-off.gif" alt="Email" border="0" /></a></td></tr>
+</table>
+<a href="#" title="This is another a link inserted into the nav. The mouseover code may not explode because of this.">This link is here to foolproof our mouseover code</a>
+</div>
+
+
+<h1>Test</h1>
+<p>whatever</p>
+<p>else</p>
+
+<ul>
+   <li><a href="#">line 1</a></li>
+   <li><a href="#">line 2</a></li>
+   <li><a href="#">line 3</a></li>
+   <li><a href="#">line 4</a></li>
+   <li><a href="#">line 5</a></li>
+   <li><a href="#">line 6</a></li>
+   <li><a href="#">line 7</a></li>
+   <li><a href="#">line 8</a></li>
+   <li><a href="#">line 9</a></li>
+   <li><a href="#">line 10</a></li>
+   <li><a href="#">line 11</a></li>
+   <li><a href="#">line 12</a></li>
+</ul>
+
+<pre>
+Code for this implementation:
+<code id="code"></code>
+</pre>
+
+<p id="contribute">Contribute to this page and report bugs via <a href="http://github.com/">GitHub</a>: <a href="http://github.com/artlung/Artlung-Rosetta/">http://github.com/artlung/Artlung-Rosetta/</a></p>
+
+</body>
+</html>
