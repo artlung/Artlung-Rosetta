@@ -11,7 +11,11 @@
 Ext.onReady(function() {
 		
 	var sampleText = 'Artlung Rosetta with ExtCore!';
-	Ext.select("ul li:nth-child(4n-3)").addClass("start"); // ext can't do this kind of selector
+	var nodeCount = 0;
+	Ext.select("ul li").each(function(){
+		if (nodeCount % 4 === 0) { Ext.get(this).addClass('start'); }
+		nodeCount++;
+	});
 	Ext.select("ul li:nth-child(4n)").addClass("end");
 	Ext.select('h1').addClass('active');
 	Ext.select('p').addClass('bad');

@@ -11,8 +11,12 @@
 glow.ready(function() {
 
 	var sampleText = 'Artlung Rosetta with Glow!';
-	// glow.dom.get("ul li:nth-child(4n-3)").addClass("start");
-	// glow.dom.get("ul li:nth-child(4n)").addClass("end");
+	var nodeCount = 0;
+	glow.dom.get("ul li").each(function(){
+		if (nodeCount % 4 === 0) { glow.dom.get(this).addClass('start'); }
+		if (nodeCount % 4 === 3) { glow.dom.get(this).addClass('end'); }
+		nodeCount++;
+	});
 	glow.dom.get('h1').addClass('active');
 	glow.dom.get('p').addClass('bad');
 	glow.dom.get('#testIdentifier').css({
