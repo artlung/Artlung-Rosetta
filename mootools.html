@@ -10,7 +10,8 @@
 <script type="text/javascript">
 window.addEvent('domready', function() {
 
-	var sampleText = 'Artlung Rosetta with MooTools!';
+	var versionNumber = MooTools.version;
+	var sampleText = 'Artlung Rosetta with version '+versionNumber+' of MooTools!';
 	$$("ul li:nth-child(4n-3)").addClass("start"); // ext can't do this kind of selector
 	$$("ul li:nth-child(4n)").addClass("end");
 	$$('h1').addClass('active');

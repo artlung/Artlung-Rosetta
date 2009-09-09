@@ -10,7 +10,8 @@
 <script type="text/javascript">
 glow.ready(function() {
 
-	var sampleText = 'Artlung Rosetta with Glow!';
+	var versionNumber = glow.VERSION;
+	var sampleText = 'Artlung Rosetta with version '+versionNumber+' of Glow!';
 	var nodeCount = 0;
 	glow.dom.get("ul li").each(function(){
 		if (nodeCount % 4 === 0) { glow.dom.get(this).addClass('start'); }

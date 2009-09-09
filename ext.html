@@ -10,7 +10,8 @@
 <script type="text/javascript">
 Ext.onReady(function() {
 		
-	var sampleText = 'Artlung Rosetta with ExtCore!';
+	var versionNumber = Ext.version;
+	var sampleText = 'Artlung Rosetta with version '+versionNumber+' of ExtCore!';
 	var nodeCount = 0;
 	Ext.select("ul li").each(function(){
 		if (nodeCount % 4 === 0) { Ext.get(this).addClass('start'); }

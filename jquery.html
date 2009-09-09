@@ -10,7 +10,8 @@
 <script type="text/javascript">
 jQuery(document).ready(function(){
 
-	var sampleText = 'Artlung Rosetta with jQuery!';
+	var versionNumber = jQuery().jquery;
+	var sampleText = 'Artlung Rosetta with version ' + versionNumber + ' of jQuery!';
 	$("ul li:nth-child(4n-3)").addClass("start");
 	$("ul li:nth-child(4n)").addClass("end");
 	$('h1').addClass('active');

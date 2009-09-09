@@ -10,7 +10,8 @@
 <script type="text/javascript">
 Event.observe(window, 'load', function(){
 	
-	var sampleText = 'Artlung Rosetta with Prototype!';
+	var versionNumber = Prototype.Version;
+	var sampleText = 'Artlung Rosetta with version '+versionNumber+' of Prototype!';
 	$$("ul li:nth-child(4n-3)").each(function(item){
 		item.addClassName("start");
 	});

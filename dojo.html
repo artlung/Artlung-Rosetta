@@ -9,7 +9,9 @@
 <link rel="stylesheet" href="resources/styles.css" type="text/css"charset="utf-8" />
 <script type="text/javascript">
 dojo.addOnLoad(function() {
-	var sampleText = 'Artlung Rosetta with Dojo!';
+
+	var versionNumber = dojo.version;
+	var sampleText = 'Artlung Rosetta with version ' + versionNumber + ' of Dojo!';
 	dojo.query("ul li:nth-child(4n-3)").addClass("start");
 	dojo.query("ul li:nth-child(4n)").addClass("end");
 	dojo.query('h1').addClass('active');
