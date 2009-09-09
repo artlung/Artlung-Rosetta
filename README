@@ -6,10 +6,10 @@ JavaScript libraries. Behaviors and display should be as alike as
 practical.
 
 The libraries in question are:
+  * Dojo
+  * ExtCore
   * jQuery
   * MooTools
-  * ExtCore
-  * Dojo
   * Prototype
 
 Here's the concept:
