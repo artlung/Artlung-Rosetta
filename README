@@ -7,6 +7,7 @@ practical.
 
 The libraries in question are:
   * Dojo
+  * Glow
   * ExtCore
   * jQuery
   * MooTools
@@ -46,6 +47,12 @@ ExtCore:
   Ext.select('#interactionExperiments input').on('click', function(e, target){
      Ext.get(target).hide();
   }, null, {preventDefault:true});
+
+Glow:
+  glow.events.addListener('#interactionExperiments input', 'click', function(e){
+     glow.dom.get(this).hide(); 
+     return false;
+  });
 
 MooTools:
   $$('#interactionExperiments input').addEvent('click', function(e){
