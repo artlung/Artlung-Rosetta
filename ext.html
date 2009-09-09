@@ -45,6 +45,7 @@ Ext.onReady(function() {
 		}
 	}, null, {preventDefault:true});
 	var closedHeight = Ext.get('loginArea').getHeight();
+	var openedHeight = false;
 	Ext.select('#loginArea h2').on('click', function(e, target){
 		var h2Element = (Ext.get(target).child('span')) ? Ext.get(target) : Ext.get(target).parent('h2');
 		if (h2Element.child('span').dom.innerHTML === '+') {
@@ -55,6 +56,12 @@ Ext.onReady(function() {
 		}
 		h2Element.child('span').update(spanStr);
 		Ext.get('loginForm').toggle();
+		if (!openedHeight){
+			openedHeight = Ext.get('loginArea').getHeight();
+		}
+		if (spanStr === '-') {
+			h2Element.parent('div').setHeight(openedHeight);
+		}
 	});
 	Ext.get('code').dom.innerHTML = Ext.select('script:last').elements[0].innerHTML;
 	
