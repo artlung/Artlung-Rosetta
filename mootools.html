@@ -2,75 +2,102 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PrototypeRosetta</title>
-<script src="js/lib/prototype.1.6.1.js" type="text/javascript"></script>
+<title>MooToolsRosetta</title>
+<script src="js/lib/mootools-yui-compressed.1.2.3.js" type="text/javascript"></script>
 <script src="js/rosetta.js" type="text/javascript"></script>
-<link rel="stylesheet" href="css/styles.css" type="text/css"charset="utf-8" />
+<link rel="stylesheet" href="css/styles.css" type="text/css" />
 <script type="text/javascript">
-Event.observe(window, 'load', function(){
-	
-	var sampleText = 'Artlung Rosetta with Prototype!';
-	$$("ul li:nth-child(4n-3)").each(function(item){
-		item.addClassName("start");
-	});
-	$$("ul li:nth-child(4n)").each(function(item){
-		item.addClassName("end");
-	});
-	$$('h1').each(function(item){
-		item.addClassName('active');
-	});
-	$$('p').each(function(item){
-		item.addClassName('bad');
-	});
-	$('testIdentifier').setStyle({
+window.addEvent('domready', function() {
+
+	var versionNumber = MooTools.version;
+	var sampleText = 'Artlung Rosetta with version '+versionNumber+' of MooTools!';
+	$$("ul li:nth-child(4n-3)").addClass("start"); // ext can't do this kind of selector
+	$$("ul li:nth-child(4n)").addClass("end");
+	$$('h1').addClass('active');
+	$$('p').addClass('bad');
+	$('testIdentifier').setStyles({
 		border:'1px solid #000',
 		backgroundColor:'#ccc'
-	}).update(sampleText);
-	
-	$$('#interactionExperiments input').each(function(item){
-		item.observe('click', function(evt){
-			item.hide();
-			Event.stop(evt);
-		});
 	});
-	$$('#interactionExperiments a').each(function(item){
-		item.observe('click', function(evt){
-			item.siblings('input').each(function(sub){
-				sub.show();
-			});
-			Event.stop(evt);
-		});
+	$('testIdentifier').set('html', sampleText);
+	$$('#interactionExperiments input').addEvent('click', function(e){
+		this.setStyle('display','none');
+		e.stop();
 	});
-	$$('#nav a').each(function(item){
-		item.observe('mouseover', function(evt){
-			if (item.down('img')) {
-				var src = item.down('img').readAttribute('src').replace('-off','-over');
-				item.down().writeAttribute('src', src);
-			}
-		});
-		item.observe('mouseout', function(evt){
-			if (item.down('img')) {
-				var src = item.down('img').readAttribute('src').replace('-over','-off');
-				item.down().writeAttribute('src', src);
-			}
-		});
+	$$('#interactionExperiments a').addEvent('click', function(e){
+		this.getParent().getChildren('input').setStyle('display','');
+		e.stop();
 	});
-	$('addRandomString').observe('click', function(evt){
+	$$('#nav a').addEvent('mouseover', function(e){
+		if (this.getFirst('img')) {
+			var src = this.getFirst('img').getProperty('src');
+			this.getFirst('img').setProperty('src',src.replace('-off','-over'));
+		}
+	}).addEvent('mouseout',function(e){
+		if (this.getFirst('img')) {
+			var src = this.getFirst('img').getProperty('src');
+			this.getFirst('img').setProperty('src',src.replace('-over','-off'));
+		}
+	});
+	$('addRandomString').addEvent('click', function(e){
 		if (Rosetta.mayIncrement()) {
-			Element.insert(Event.element(evt), {after:' World' + Rosetta.getIndex() });
+			if (!this.getParent().getFirst('span')) {
+				var newSpan = new Element('span');
+				this.getParent().grab(newSpan, 'bottom');
+			}
+			this.getParent().getChildren('span').appendText(' World' + Rosetta.getIndex(), 'top');
 			Rosetta.increment();
 		}
-		Event.stop(evt);
+		e.stop();
 	});
-	$$('#loginArea h2').each(function(item){
-		item.observe('click', function(evt){
-			$('loginForm').toggle();
-			var spanStr = (item.down('span').innerHTML === '+') ? '-' : '+';
-			item.down('span').update(spanStr);
-		});
+	$$('#loginArea h2').addEvent('click', function(e){
+		var displayValue = ($('loginForm').getStyle('display') === 'none') ? 'block' : 'none';
+		$('loginForm').setStyle('display', displayValue);
+		var spanStr = (this.getFirst('span').get('html') === '+') ? '-' : '+';
+		this.getFirst('span').set('html', spanStr);
 	});
-	var sourceCode = $$('script')[2];
-	$('code').innerHTML = sourceCode.innerHTML;
+
+	// // Load text with Ajax
+	// glow.events.addListener('#ajaxloadText', 'click', function(){
+	// 	var url = 'ajax/chunk.txt';
+	// 	var opts = {
+	// 		onLoad: function(data){
+	// 			glow.dom.get('#ajaxOutput').text(data.text());
+	// 		}			
+	// 	};
+	// 	glow.net.get(url, opts);
+	// 	return false;
+	// });
+
+	// // Load JSON with Ajax
+	// glow.events.addListener('#ajaxloadJson', 'click', function(){
+	// 	var url = 'ajax/chunk.json';
+	// 	var opts = {
+	// 		onLoad: function(data){
+	// 			var decodedData = glow.data.decodeJson(data.nativeResponse.responseText);
+	// 			glow.dom.get('#ajaxOutput').text(decodedData.txt);
+	// 		}			
+	// 	};
+	// 	glow.net.get(url, opts);
+	// 	return false;
+	// });
+
+	// // Load XML with Ajax
+	// glow.events.addListener('#ajaxloadXml', 'click', function(){
+	// 	var url = 'ajax/chunk.xml';
+	// 	var opts = {
+	// 		onLoad: function(data){
+	// 		    var xmlNodeList = glow.dom.get( data.xml() );
+	// 		    var textNode = xmlNodeList.get("text");
+	// 			glow.dom.get('#ajaxOutput').text(textNode.text());
+	// 		}			
+	// 	};
+	// 	glow.net.get(url, opts);
+	// 	return false;
+	// });
+
+	var sourceCode = $$('script').getLast().get('html');
+	$('code').set('html', sourceCode)
 	
 });
 </script>
