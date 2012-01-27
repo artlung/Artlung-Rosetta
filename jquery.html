@@ -47,18 +47,25 @@ jQuery(document).ready(function(){
 		$(this).children('span').text('+');
 		$('#loginForm').hide();
 	});
+
+
+	// Load HTML with Ajax
 	$('#ajaxloadHtml').bind('click', function(){
 		$.get('ajax/chunk.html',null, function(data){
 			$('#ajaxOutput').html(data);
 		});
 		return false;
 	});
+
+	// Load text with Ajax
 	$('#ajaxloadText').bind('click', function(){
 		$.get('ajax/chunk.txt',null, function(data){
 			$('#ajaxOutput').text(data);
 		});
 		return false;
 	});
+
+	// Load JSON with Ajax
 	$('#ajaxloadJson').bind('click', function(){
 		$.getJSON('ajax/chunk.json', null, function(json){
 			var textVal = json.txt;
@@ -66,6 +73,8 @@ jQuery(document).ready(function(){
 		});
 		return false;
 	});
+
+	// Load XML with Ajax
 	$('#ajaxloadXml').bind('click', function(){
 		$.get('ajax/chunk.xml',null, function(xml){
 			var textNode = $(xml).find('text:first').text();
@@ -73,6 +82,7 @@ jQuery(document).ready(function(){
 		});
 		return false;
 	});
+
 	var sourceCode = $('script:last').html();
 	$('#code').html(sourceCode)
 });
