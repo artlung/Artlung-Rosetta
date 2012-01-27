@@ -1,4 +1,4 @@
 {
-	"chunk": "chunk.json",
+	"txt": "This is a chunk of data from JSON.",
 	"numbers": [1, 3, 5, 7, 11]
 }

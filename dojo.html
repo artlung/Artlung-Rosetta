@@ -61,50 +61,58 @@ dojo.addOnLoad(function() {
 			}
 		});
 	});
-	// dojo.connect(dojo.byId('ajaxloadHtml'), 'onclick', function(e){
-	// 	dojo.xhrGet({
-	// 		url : "ajax/chunk.html",
-	// 		handleAs : "text",
-	// 		load : function(response, ioArgs) {
-	// 			dojo.byId('ajaxOutput').innerHTML = response;
-	// 			return;
-	// 		}
-	// 	});
-	// 	dojo.stopEvent(e);
-	// });
-	// dojo.connect(dojo.byId('ajaxloadText'), 'onclick', function(e){
-	// 	dojo.xhrGet({
-	// 		url : "ajax/chunk.txt",
-	// 		handleAs : "text",
-	// 		load : function(response, ioArgs) {
-	// 			dojo.byId('ajaxOutput').innerHTML = response;
-	// 			return;
-	// 		}
-	// 	});
-	// 	dojo.stopEvent(e);
-	// });
-	// dojo.connect(dojo.byId('ajaxloadJson'), 'onclick', function(e){
-	// 	dojo.xhrGet({
-	// 		url : "ajax/chunk.json",
-	// 		handleAs : "json",
-	// 		load : function(json, ioArgs) {
-	// 			dojo.byId('ajaxOutput').innerHTML = json.text;
-	// 			return;
-	// 		}
-	// 	});
-	// 	dojo.stopEvent(e);
-	// });
-	// dojo.connect(dojo.byId('ajaxloadXml'), 'onclick', function(e){
-	// 	dojo.xhrGet({
-	// 		url : "ajax/chunk.xml",
-	// 		handleAs : "xml",
-	// 		load : function(xml, ioArgs) {
-	// 			dojo.byId('ajaxOutput').innerHTML = xml.getElementsByTagName("text")[0].firstChild.nodeValue;
-	// 			return;
-	// 		}
-	// 	});
-	// 	dojo.stopEvent(e);
-	// });
+
+
+	// Load HTML with Ajax
+	dojo.connect(dojo.byId('ajaxloadHtml'), 'onclick', function(e){
+		dojo.xhrGet({
+			url : "ajax/chunk.html",
+			handleAs : "text",
+			load : function(response, ioArgs) {
+				dojo.byId('ajaxOutput').innerHTML = response;
+				return;
+			}
+		});
+		dojo.stopEvent(e);
+	});
+	// Load text with Ajax
+	dojo.connect(dojo.byId('ajaxloadText'), 'onclick', function(e){
+		dojo.xhrGet({
+			url : "ajax/chunk.txt",
+			handleAs : "text",
+			load : function(response, ioArgs) {
+				dojo.byId('ajaxOutput').innerHTML = response;
+				return;
+			}
+		});
+		dojo.stopEvent(e);
+	});
+
+	// Load JSON with Ajax
+	dojo.connect(dojo.byId('ajaxloadJson'), 'onclick', function(e){
+		dojo.xhrGet({
+			url : "ajax/chunk.json",
+			handleAs : "json",
+			load : function(json, ioArgs) {
+				dojo.byId('ajaxOutput').innerHTML = json.txt;
+				return;
+			}
+		});
+		dojo.stopEvent(e);
+	});
+
+	// Load XML with Ajax
+	dojo.connect(dojo.byId('ajaxloadXml'), 'onclick', function(e){
+		dojo.xhrGet({
+			url : "ajax/chunk.xml",
+			handleAs : "xml",
+			load : function(xml, ioArgs) {
+				dojo.byId('ajaxOutput').innerHTML = xml.getElementsByTagName("text")[0].firstChild.nodeValue;
+				return;
+			}
+		});
+		dojo.stopEvent(e);
+	});
 	dojo.byId('code').innerHTML = dojo.query('script')[2].innerHTML;
 });
 </script>
@@ -142,7 +150,7 @@ dojo.addOnLoad(function() {
 	<a href="#" id="ajaxloadJson">json</a> &middot;
 	<a href="#" id="ajaxloadText">text</a> &middot;
 	<a href="#" id="ajaxloadXml">xml</a>: 
-	<span id="ajaxOutput">AJAX Examples are not yet implemented.</span>
+	<div id="ajaxOutput">AJAX Examples are not yet implemented.</div>
 </div>
 
 <div id="randomContent">

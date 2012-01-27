@@ -59,6 +59,8 @@ body { font-family: sans-serif; }
 	padding: 10px;
 	margin: 0 0 10px 0;
 }
-.basicArea span {
+.basicArea div {
 	background-color: #cfc;
+	padding: 10px;
+	margin: 10px 0 0 0;
 }
