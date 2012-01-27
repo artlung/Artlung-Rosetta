@@ -54,6 +54,61 @@ Ext.onReady(function() {
 		h2Element.child('span').update(spanStr);
 		Ext.get('loginForm').toggle();
 	});
+
+	// Load HTML with Ajax
+	Ext.get('ajaxloadHtml').on('click', function(e, target){
+		var url = 'ajax/chunk.html';
+		Ext.Ajax.request({
+			url : url, 
+			method: 'GET',
+			success: function ( result, request ) { 
+				Ext.get('ajaxOutput').dom.innerHTML = result.responseText; 
+			}
+		});
+
+	}, null, {preventDefault:true});
+
+	// Load text with Ajax
+	Ext.get('ajaxloadText').on('click', function(e, target){
+		var url = 'ajax/chunk.txt';
+		Ext.Ajax.request({
+			url : url, 
+			method: 'GET',
+			success: function ( result, request ) { 
+				Ext.get('ajaxOutput').dom.innerHTML = result.responseText; 
+			}
+		});
+	}, null, {preventDefault:true});
+
+	// Load JSON with Ajax
+	Ext.get('ajaxloadJson').on('click', function(e, target){
+		var url = 'ajax/chunk.json';
+		Ext.Ajax.request({
+			url : url, 
+			method: 'GET',
+			success: function ( result, request ) { 
+				var jsonData = Ext.util.JSON.decode(result.responseText);
+				Ext.get('ajaxOutput').dom.innerHTML = jsonData.txt; 
+			}
+		});
+	}, null, {preventDefault:true});
+
+	// Load XML with Ajax
+	Ext.get('ajaxloadXml').on('click', function(e, target){
+		var url = 'ajax/chunk.xml';
+		Ext.Ajax.request({
+			url : url, 
+			method: 'GET',
+			success: function ( result, request ) { 
+				var d = document.createElement("div");
+				d.innerHTML = result.responseText;
+				var tempText = Ext.DomQuery.selectValue("text", d);
+				Ext.get('ajaxOutput').dom.innerHTML = tempText; 
+			}
+		});
+	}, null, {preventDefault:true});
+
+
 	Ext.get('code').dom.innerHTML = Ext.select('script:last').elements[0].innerHTML;
 	
 });
@@ -91,7 +146,7 @@ Ext.onReady(function() {
 	<a href="#" id="ajaxloadJson">json</a> &middot;
 	<a href="#" id="ajaxloadText">text</a> &middot;
 	<a href="#" id="ajaxloadXml">xml</a>: 
-	<div id="ajaxOutput">AJAX Examples are not yet implemented.</div>
+	<div id="ajaxOutput">Load data into this by clicking the links above.</div>
 </div>
 
 
