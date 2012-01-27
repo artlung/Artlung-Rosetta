@@ -57,44 +57,46 @@ window.addEvent('domready', function() {
 		this.getFirst('span').set('html', spanStr);
 	});
 
-	// // Load text with Ajax
-	// glow.events.addListener('#ajaxloadText', 'click', function(){
-	// 	var url = 'ajax/chunk.txt';
-	// 	var opts = {
-	// 		onLoad: function(data){
-	// 			glow.dom.get('#ajaxOutput').text(data.text());
-	// 		}			
-	// 	};
-	// 	glow.net.get(url, opts);
-	// 	return false;
-	// });
+	// Load html with Ajax
+	$('ajaxloadHtml').addEvent('click', function(e){
+		var url = 'ajax/chunk.html';
+		$('ajaxOutput').load(url);
+		e.stop();
+	});
 
-	// // Load JSON with Ajax
-	// glow.events.addListener('#ajaxloadJson', 'click', function(){
-	// 	var url = 'ajax/chunk.json';
-	// 	var opts = {
-	// 		onLoad: function(data){
-	// 			var decodedData = glow.data.decodeJson(data.nativeResponse.responseText);
-	// 			glow.dom.get('#ajaxOutput').text(decodedData.txt);
-	// 		}			
-	// 	};
-	// 	glow.net.get(url, opts);
-	// 	return false;
-	// });
+	// Load text with Ajax
+	$('ajaxloadText').addEvent('click', function(e){
+		var url = 'ajax/chunk.txt';
+		$('ajaxOutput').load(url);
+		e.stop();
+	});
 
-	// // Load XML with Ajax
-	// glow.events.addListener('#ajaxloadXml', 'click', function(){
-	// 	var url = 'ajax/chunk.xml';
-	// 	var opts = {
-	// 		onLoad: function(data){
-	// 		    var xmlNodeList = glow.dom.get( data.xml() );
-	// 		    var textNode = xmlNodeList.get("text");
-	// 			glow.dom.get('#ajaxOutput').text(textNode.text());
-	// 		}			
-	// 	};
-	// 	glow.net.get(url, opts);
-	// 	return false;
-	// });
+	// Load JSON with Ajax
+	$('ajaxloadJson').addEvent('click', function(e){
+		var url = 'ajax/chunk.json';
+		new Request.JSON({
+		    url: url,
+		    method: 'get',
+			onSuccess: function(responseJSON, responseText) {
+		        $('ajaxOutput').set('text', responseJSON.txt);
+			}
+		}).send();
+		e.stop();
+	});
+
+	// Load XML with Ajax
+	$('ajaxloadXml').addEvent('click', function(e){
+		var url = 'ajax/chunk.xml';
+		new Request({
+		    url: url,
+		    method: 'get',
+			onSuccess: function(responseText, responseXML) {
+				var txt = responseXML.getElements('text').get('text');
+		        $('ajaxOutput').set('text', txt);
+			}
+		}).send();
+		e.stop();
+	});
 
 	var sourceCode = $$('script').getLast().get('html');
 	$('code').set('html', sourceCode)
