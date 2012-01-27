@@ -60,6 +60,60 @@ glow.ready(function() {
 			glow.dom.get('#loginForm').hide();
 		}
 	});
+
+	// Load HTML with Ajax
+	glow.events.addListener('#ajaxloadHtml', 'click', function(){
+
+		var url = 'ajax/chunk.html';
+		var opts = {
+			onLoad: function(data){
+				glow.dom.get('#ajaxOutput').html(data.text());
+			}			
+		};
+		glow.net.get(url, opts);
+		return false;
+	});
+
+	// Load text with Ajax
+	glow.events.addListener('#ajaxloadText', 'click', function(){
+		var url = 'ajax/chunk.txt';
+		var opts = {
+			onLoad: function(data){
+				glow.dom.get('#ajaxOutput').text(data.text());
+			}			
+		};
+		glow.net.get(url, opts);
+		return false;
+	});
+
+	// Load JSON with Ajax
+	glow.events.addListener('#ajaxloadJson', 'click', function(){
+		var url = 'ajax/chunk.json';
+		var opts = {
+			onLoad: function(data){
+				var decodedData = glow.data.decodeJson(data.nativeResponse.responseText);
+				glow.dom.get('#ajaxOutput').text(decodedData.txt);
+			}			
+		};
+		glow.net.get(url, opts);
+		return false;
+	});
+
+	// Load XML with Ajax
+	glow.events.addListener('#ajaxloadXml', 'click', function(){
+		var url = 'ajax/chunk.xml';
+		var opts = {
+			onLoad: function(data){
+			    var xmlNodeList = glow.dom.get( data.xml() );
+			    var textNode = xmlNodeList.get("text");
+				glow.dom.get('#ajaxOutput').text(textNode.text());
+			}			
+		};
+		glow.net.get(url, opts);
+		return false;
+	});
+
+
 	var sourceCode = glow.dom.get('script').item(2).innerHTML;
 	glow.dom.get('#code').html(sourceCode);
 });
