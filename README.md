@@ -5,6 +5,7 @@ http://github.com/artlung/Artlung-Rosetta/
 Compare how to do the same thing with the same HTML with different JavaScript libraries. Behaviors and display should be as alike as practical.
 
 The libraries in question are:
+
   * Dojo
   * Glow
   * ExtCore
@@ -13,6 +14,7 @@ The libraries in question are:
   * Prototype
 
 Here's the concept:
+
   * Same HTML code
   * Same behaviors
   * Different JavaScript library loaded
