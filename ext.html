@@ -1,17 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head profile="http://gmpg.org/xfn/11">
+<!DOCTYPE html>
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ExtCoreRosetta</title>
-<script src="resources/ext-core.3.0.0.js" type="text/javascript" charset="utf-8"></script>
-<script src="resources/rosetta.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="resources/styles.css" type="text/css"charset="utf-8" />
+<script src="js/lib/ext-core.3.0.0.js" type="text/javascript"></script>
+<script src="js/rosetta.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/styles.css" type="text/css"charset="utf-8" />
 <script type="text/javascript">
 Ext.onReady(function() {
 		
-	var versionNumber = Ext.version;
-	var sampleText = 'Artlung Rosetta with version '+versionNumber+' of ExtCore!';
+	var sampleText = 'Artlung Rosetta with ExtCore!';
 	var nodeCount = 0;
 	Ext.select("ul li").each(function(){
 		if (nodeCount % 4 === 0) { Ext.get(this).addClass('start'); }
@@ -45,7 +43,6 @@ Ext.onReady(function() {
 		}
 	}, null, {preventDefault:true});
 	var closedHeight = Ext.get('loginArea').getHeight();
-	var openedHeight = false;
 	Ext.select('#loginArea h2').on('click', function(e, target){
 		var h2Element = (Ext.get(target).child('span')) ? Ext.get(target) : Ext.get(target).parent('h2');
 		if (h2Element.child('span').dom.innerHTML === '+') {
@@ -56,12 +53,6 @@ Ext.onReady(function() {
 		}
 		h2Element.child('span').update(spanStr);
 		Ext.get('loginForm').toggle();
-		if (!openedHeight){
-			openedHeight = Ext.get('loginArea').getHeight();
-		}
-		if (spanStr === '-') {
-			h2Element.parent('div').setHeight(openedHeight);
-		}
 	});
 	Ext.get('code').dom.innerHTML = Ext.select('script:last').elements[0].innerHTML;
 	
@@ -87,7 +78,6 @@ Ext.onReady(function() {
 
 <div id="interactionExperiments">
 	Click the buttons in here to make them go away.
-
 	<a href="#" class="reset">Reset Buttons</a>
 	<br />
 	<input value="click" type="button" />
@@ -95,19 +85,29 @@ Ext.onReady(function() {
 	<input value="remove" type="button" />
 </div>
 
+<div id="ajaxExamples" class="basicArea">
+	Load: 
+	<a href="#" id="ajaxloadHtml">html</a> &middot;
+	<a href="#" id="ajaxloadJson">json</a> &middot;
+	<a href="#" id="ajaxloadText">text</a> &middot;
+	<a href="#" id="ajaxloadXml">xml</a>: 
+	<span id="ajaxOutput">data should load here.</span>
+</div>
+
+
 <div id="randomContent">
 	<a href="#" id="addRandomString">To whom do you say hello when programming?</a>
 </div>
 
 <div id="nav">
 <table cellspacing="0" cellpadding="0" border="0">
-	<tr><td><a href="index.html"><img src="resources/images/home-off.gif" alt="Home" border="0" /></a></td></tr>
-	<tr><td><a href="index.html"><img src="resources/images/newcomer-off.gif" alt="Newcomer?" border="0" /></a></td></tr>
-	<tr><td><a href="index.html"><img src="resources/images/biography-off.gif" alt="Biography" border="0" /></a></td></tr>
-	<tr><td><a href="index.html"><img src="resources/images/favorite-sites-off.gif" alt="Favorite Sites" border="0" /></a></td></tr>
-	<tr><td><a href="index.html"><img src="resources/images/resume-off.gif" alt="Resume" border="0" /></a></td></tr>
-	<tr><td><a href="index.html"><img src="resources/images/portfolio-off.gif" alt="Portfolio" border="0" /></a></td></tr>
-	<tr><td><a href="index.html"><img src="resources/images/email-off.gif" alt="Email" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="images/home-off.gif" alt="Home" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="images/newcomer-off.gif" alt="Newcomer?" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="images/biography-off.gif" alt="Biography" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="images/favorite-sites-off.gif" alt="Favorite Sites" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="images/resume-off.gif" alt="Resume" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="images/portfolio-off.gif" alt="Portfolio" border="0" /></a></td></tr>
+	<tr><td><a href="index.html"><img src="images/email-off.gif" alt="Email" border="0" /></a></td></tr>
 </table>
 <a href="#" title="This is another a link inserted into the nav. The mouseover code may not explode because of this.">This link is here to foolproof our mouseover code</a>
 </div>
