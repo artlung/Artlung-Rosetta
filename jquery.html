@@ -47,32 +47,32 @@ jQuery(document).ready(function(){
 		$(this).children('span').text('+');
 		$('#loginForm').hide();
 	});
-	// $('#ajaxloadHtml').click(function(){
-	// 	$.get('ajax/chunk.html',null, function(data){
-	// 		$('#ajaxOutput').html(data);
-	// 	});
-	// 	return false;
-	// });
-	// $('#ajaxloadText').click(function(){
-	// 	$.get('ajax/chunk.txt',null, function(data){
-	// 		$('#ajaxOutput').text(data);
-	// 	});
-	// 	return false;
-	// });
-	// $('#ajaxloadJson').click(function(){
-	// 	$.getJSON('ajax/chunk.json',null, function(json){
-	// 		var textVal = json.text;
-	// 		$('#ajaxOutput').text(textVal);
-	// 	});
-	// 	return false;
-	// });
-	// $('#ajaxloadXml').click(function(){
-	// 	$.get('ajax/chunk.xml',null, function(xml){
-	// 		var textNode = $(xml).find('text:first').text();
-	// 		$('#ajaxOutput').text(textNode);
-	// 	});
-	// 	return false;
-	// });
+	$('#ajaxloadHtml').bind('click', function(){
+		$.get('ajax/chunk.html',null, function(data){
+			$('#ajaxOutput').html(data);
+		});
+		return false;
+	});
+	$('#ajaxloadText').bind('click', function(){
+		$.get('ajax/chunk.txt',null, function(data){
+			$('#ajaxOutput').text(data);
+		});
+		return false;
+	});
+	$('#ajaxloadJson').bind('click', function(){
+		$.getJSON('ajax/chunk.json', null, function(json){
+			var textVal = json.txt;
+			$('#ajaxOutput').text(textVal);
+		});
+		return false;
+	});
+	$('#ajaxloadXml').bind('click', function(){
+		$.get('ajax/chunk.xml',null, function(xml){
+			var textNode = $(xml).find('text:first').text();
+			$('#ajaxOutput').text(textNode);
+		});
+		return false;
+	});
 	var sourceCode = $('script:last').html();
 	$('#code').html(sourceCode)
 });
