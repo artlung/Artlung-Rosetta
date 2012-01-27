@@ -70,6 +70,57 @@ Event.observe(window, 'load', function(){
 			item.down('span').update(spanStr);
 		});
 	});
+
+	// Load HTML with Ajax
+	$('ajaxloadHtml').observe('click', function(evt){
+		var url = 'ajax/chunk.html';
+		new Ajax.Request(url, {
+		  method: 'get',
+		  onSuccess: function(transport) {
+		  	$('ajaxOutput').update(transport.responseText);
+		  }
+		});
+		Event.stop(evt);
+	});
+
+	// Load text with Ajax
+	$('ajaxloadText').observe('click', function(evt){
+		var url = 'ajax/chunk.txt';
+		new Ajax.Request(url, {
+		  method: 'get',
+		  onSuccess: function(transport) {
+		  	$('ajaxOutput').update(transport.responseText);
+		  }
+		});
+		Event.stop(evt);
+	});
+
+	// Load JSON with Ajax
+	$('ajaxloadJson').observe('click', function(evt){
+		var url = 'ajax/chunk.json';
+		new Ajax.Request(url, {
+		  method: 'get',
+		  evalJSON: 'force',
+		  onSuccess: function(transport) {
+		  	$('ajaxOutput').update(transport.responseJSON.txt);
+		  }
+		});
+		Event.stop(evt);
+	});
+
+	// Load XML with Ajax
+	$('ajaxloadXml').observe('click', function(evt){
+		var url = 'ajax/chunk.xml';
+		new Ajax.Request(url, {
+		  method: 'get',
+		  onSuccess: function(transport) {
+			var node = transport.responseXML.documentElement.getElementsByTagName('text')[0];
+		  	$('ajaxOutput').update(node.firstChild.data);
+		  }
+		});
+		Event.stop(evt);
+	});
+
 	var sourceCode = $$('script')[2];
 	$('code').innerHTML = sourceCode.innerHTML;
 	
@@ -108,7 +159,7 @@ Event.observe(window, 'load', function(){
 	<a href="#" id="ajaxloadJson">json</a> &middot;
 	<a href="#" id="ajaxloadText">text</a> &middot;
 	<a href="#" id="ajaxloadXml">xml</a>: 
-	<div id="ajaxOutput">AJAX Examples are not yet implemented.</div>
+	<div id="ajaxOutput">Load data into this by clicking the links above.</div>
 </div>
 
 <div id="randomContent">
