@@ -1,10 +1,6 @@
 **Artlung Rosetta**
 
-http://github.com/artlung/Artlung-Rosetta/
-
-Compare how to do the same thing with the same HTML with different JavaScript libraries. Behaviors and display should be as alike as practical.
-
-The libraries in question are:
+Compare how to do the same thing with the same HTML with different JavaScript libraries. Behaviors and display should be as alike as practical. Libraries include:
 
   * Dojo
   * Glow
@@ -13,7 +9,7 @@ The libraries in question are:
   * MooTools
   * Prototype
 
-Here's the concept:
+**tl;dr:**
 
   * Same HTML code
   * Same behaviors
@@ -23,7 +19,7 @@ Here's the concept:
 **For Example:**
 
 The following code adds a click event to any `<input>` inside an element
-with an id of interactionExperiments. On click, it will make that input
+with an `id` of `interactionExperiments`. On click, it will make that input
 disappear. You can see some libraries implement a `hide()` method, while
 some don't (seem) to have one available, so you have to set
 `style.display = 'none'` or in the case of MooTools you do
@@ -33,10 +29,10 @@ via email or GitHub.
 
 **jQuery:**
 
-  $('#interactionExperiments input').click(function(){
-     $(this).hide();
-     return false;
-  });
+    $('#interactionExperiments input').click(function(){
+       $(this).hide();
+       return false;
+    });
 
 **Dojo:**
 
