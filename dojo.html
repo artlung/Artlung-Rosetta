@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>DojoRosetta</title>
-<script src="js/lib/dojo.xd.js" type="text/javascript"></script>
+<script src="js/lib/dojo.1.7.1.js" type="text/javascript"></script>
 <script src="js/rosetta.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/styles.css" type="text/css"charset="utf-8" />
 <script type="text/javascript">
@@ -19,27 +19,21 @@ dojo.addOnLoad(function() {
 		backgroundColor:'#ccc'
 	});
 	testIdentifier.innerHTML = sampleText;
-	dojo.query('#interactionExperiments input').forEach(function(item){
-		dojo.connect(item, 'onclick', function(e){
-			item.style.display = 'none';
-			dojo.stopEvent(e);
-		});
+	dojo.query('#interactionExperiments input').on('click', function(e){
+		this.style.display = 'none';
+		dojo.stopEvent(e);
 	});
-	dojo.query('#interactionExperiments a').forEach(function(item){
-		dojo.connect(item, 'onclick', function(e){
-			dojo.query('input', item.parentNode).forEach(function(bar){
-				bar.style.display = 'inline';
-			});
-			dojo.stopEvent(e);
+	dojo.query('#interactionExperiments a').on('click', function(e){
+		dojo.query('input', this.parentNode).forEach(function(bar){
+			bar.style.display = 'inline';
 		});
+		dojo.stopEvent(e);
 	});
-	dojo.query('#nav a:has(img)').forEach(function(item){
-		dojo.connect(item, 'onmouseover', function(e){
-			dojo.query('img',item).forEach("item.src = item.src.replace('-off','-over')");
-		});
-		dojo.connect(item, 'onmouseout', function(e){
-			dojo.query('img',item).forEach("item.src = item.src.replace('-over','-off')");
-		});
+	dojo.query('#nav a:has(img)').on('mouseover', function(e){
+		dojo.query('img',this).forEach("item.src = item.src.replace('-off','-over')");
+	})
+	dojo.query('#nav a:has(img)').on('mouseout', function(e){
+		dojo.query('img',this).forEach("item.src = item.src.replace('-over','-off')");
 	});
 	var addRandomLink= dojo.byId('addRandomString');
 	dojo.connect(addRandomLink, 'onclick', function(e){
